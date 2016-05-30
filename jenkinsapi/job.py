@@ -41,7 +41,7 @@ class Job(JenkinsBase, MutableJenkinsThing):
         self._scmbranchmap = {
             'svn': lambda element_tree: [],
             'git': lambda element_tree: [element for element in element_tree.findall('./scm/branches/hudson.plugins.git.BranchSpec/name')],
-            'hg': lambda element_tree: [element_tree.find('./scm/branch')],
+            'hg': lambda element_tree: [element_tree.find('./scm/revision')],
             None: lambda element_tree: []
         }
         JenkinsBase.__init__(self, url)
