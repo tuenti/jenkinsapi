@@ -1,7 +1,7 @@
 import json
 import logging
-import urlparse
 import xml.etree.ElementTree as ET
+from urllib import parse
 from collections import defaultdict
 from time import sleep
 from jenkinsapi.build import Build
@@ -486,7 +486,7 @@ class Job(JenkinsBase, MutableJenkinsThing):
         if not self.is_queued():
             raise NotInQueue()
         queue_id = self._data['queueItem']['id']
-        url = urlparse.urljoin(self.get_jenkins_obj().get_queue().baseurl,
+        url = parse.urljoin(self.get_jenkins_obj().get_queue().baseurl,
                                'cancelItem?id=%s' % queue_id)
         self.get_jenkins_obj().requester.post_and_confirm_status(url, data='')
         return True

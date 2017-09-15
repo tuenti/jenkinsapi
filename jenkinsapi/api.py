@@ -6,7 +6,7 @@ import os
 import time
 import logging
 
-from urllib2 import urlparse
+from urllib import parse
 from jenkinsapi import constants
 from jenkinsapi.jenkins import Jenkins
 from jenkinsapi.artifact import Artifact
@@ -154,7 +154,7 @@ def install_artifacts(artifacts, dirstruct, installdir, basestaticurl):
                     theartifact = artifacts[artifactname]
                 else:
                     # It's probably a static file, we can get it from the static collection
-                    staticurl = urlparse.urljoin(basestaticurl, artifactname)
+                    staticurl = parse.urljoin(basestaticurl, artifactname)
                     theartifact = Artifact(artifactname, staticurl)
                 theartifact.save(destpath)
                 installed.append(destpath)
